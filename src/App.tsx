@@ -8,13 +8,18 @@ import './App.css';
 import Menu from './Components/Menu/Menu'
 import SignUp from './Components/Menu/SignUp'
 
-type SessionState = {
-  sessionToken: string
+
+type MyProps = {
+  
+  
 }
 
-type NewSessionState = {
+type SessionState = {
+  sessionToken: string
   newToken: string
-}
+};
+
+
 
 
 
@@ -22,11 +27,9 @@ type NewSessionState = {
 
 
 class App extends React.Component<SessionState> {
-  constructor(props: any) {
+  constructor(props: SessionState) {
     super(props) 
-    this.state= {
-      sessionToken: '',
-    }
+   
   }
 
   
@@ -38,36 +41,48 @@ class App extends React.Component<SessionState> {
     })
     
     let newToken = localStorage.getItem('token')
-     function reviseToken(newToken: any) : Promise<any>
-     this.componentDidCatch = () => {
-       this.setState({
-         sessionToken: newToken
-       })
-     }
      
-     console.log('View setSessionTokan----->', newToken);
-     console.log('View SessionToken ---> ', newToken);
+     
+     
+    //  console.log('View setSessionTokan----->', newToken);
+    //  console.log('View SessionToken ---> ', newToken);
 
-     console.log('View token ---> ', localStorage.token)
+    //  console.log('View token ---> ', localStorage.token)
 
-    function clearToken() : Promise<void>
-    this.componentDidCatch = () => {
-      this.setState({
-        sessionToken: ''
-      })
-    }
+    // function clearToken() : Promise<void>
+    // this.componentDidCatch = () => {
+    //   this.setState({
+    //     sessionToken: ''
+    //   })
+    // }
    
   }
+}
 
- 
-  render(){
+reviseToken  (newToken: string)  {
+  this.componentDidCatch = () => {
+   this.setState({
+     sessionToken: newToken
+   })
+ }
+ }
 
-    return (
+clearToken () {
+this.componentDidCatch = () => {
+  this.setState({
+    sessionToken: localStorage.clear()
+  })
+}
+console.log('Confirm token is cleared.', localStorage.token);
+}
+  render() {
+   return (
       <div>
         <Container>
           <Row>
             <Router>
-              <Menu/>
+              <Menu />
+              <SignUp/>
             </Router>
           </Row>
         </Container>

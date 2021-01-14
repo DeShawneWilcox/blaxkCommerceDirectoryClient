@@ -7,11 +7,23 @@ import SignIn from './SignIn';
 
 
 
+
 class Menu extends React.Component {
+    constructor(props: any) {
+        super(props)
+    }
     render(){
         return (
         <Router> 
-            <div></div>
+            <div className="menu">
+                <Button><Link to="/">Home</Link></Button>
+                <Button><Link to="SignUp">Sign Up</Link></Button>
+                <Button><Link to="SignIn">Sign In</Link></Button>
+                <Button >Logout</Button>
+
+            </div>
+
+
         </Router>
         )
     }
