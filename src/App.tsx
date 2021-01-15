@@ -9,24 +9,17 @@ import Menu from './Components/Menu/Menu'
 import SignUp from './Components/Menu/SignUp'
 
 
-type MyProps = {
-  
-  
-}
+
 
 type SessionState = {
-  sessionToken: string
+  sessionToken: string|null
   newToken: string
 };
 
 
 
 
-
-
-
-
-class App extends React.Component<SessionState> {
+class App extends React.Component<{},SessionState> {
   constructor(props: SessionState) {
     super(props) 
    
@@ -40,21 +33,7 @@ class App extends React.Component<SessionState> {
       sessionToken: localStorage.getItem('token')
     })
     
-    let newToken = localStorage.getItem('token')
-     
-     
-     
-    //  console.log('View setSessionTokan----->', newToken);
-    //  console.log('View SessionToken ---> ', newToken);
-
-    //  console.log('View token ---> ', localStorage.token)
-
-    // function clearToken() : Promise<void>
-    // this.componentDidCatch = () => {
-    //   this.setState({
-    //     sessionToken: ''
-    //   })
-    // }
+    
    
   }
 }
@@ -64,13 +43,16 @@ reviseToken  (newToken: string)  {
    this.setState({
      sessionToken: newToken
    })
+   
  }
+ console.log('View SessionToken ---> ', newToken);
  }
 
 clearToken () {
 this.componentDidCatch = () => {
+  localStorage.clear()
   this.setState({
-    sessionToken: localStorage.clear()
+    sessionToken: ''
   })
 }
 console.log('Confirm token is cleared.', localStorage.token);
@@ -82,7 +64,7 @@ console.log('Confirm token is cleared.', localStorage.token);
           <Row>
             <Router>
               <Menu />
-              <SignUp/>
+              <SignUp reviseToken={this.reviseToken} clearToken={this.clearToken}/>
             </Router>
           </Row>
         </Container>

@@ -1,6 +1,11 @@
 import React from 'react'
 import { updateShorthandPropertyAssignment } from 'typescript';
 
+type AcceptedProps = {
+    reviseToken: (newToken: string) => void,
+    clearToken: () => void
+}
+
 type SignInState = {
     username: string,
     password: string,
@@ -8,36 +13,39 @@ type SignInState = {
 };
 
 
-class SignIn extends React.Component<SignInState> {
-    constructor(props: SignInState) {
-    super(props);
-    this.state= {
-        
+class SignIn extends React.Component<AcceptedProps, SignInState> {
+    constructor(props: AcceptedProps) {
+        super(props);
+        this.state = {
+            username: '',
+            password: '',
+            setUserLoggedin: false
+
+        }
     }
+
+    signIn(event: any) {
+        event.preventDefault();
+        console.log('testing signin')
+        fetch('http://localhost:1906/user/signin', {
+            method: 'POST',
+            headers: new Headers({
+                'Content-Type':
+                    'application/json'
+            }),
+            body: JSON.stringify(this.state),
+        })
+            .then(response => response.json())
+            .then(result => {
+                this.props.reviseToken(result.sessionToken)
+                console.log('sign in completed')
+            })
     }
 
-signIn(event: any) {
-    event.preventDefault();
-    console.log('testing signin')
-    fetch('http://localhost:1906/user/signin', {
-        method: 'POST',
-        headers: new Headers({
-            'Content-Type':
-            'application/json'
-        }),
-        body: JSON.stringify(this.state),
-        })
-        .then(response => response.json())
-        .then(result => {
-            this.props.reviseToken(result.sessionToken)
-            console.log('sign in completed')
-        })
-    })
+    componentDidMount = () => {
 
-    componentDidMount= () => {
-
-    }    
-    render(){
+    }
+    render() {
         return (
             <div>Anything</div>
         )
