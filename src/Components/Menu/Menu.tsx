@@ -20,10 +20,7 @@ class Menu extends React.Component {
                 <Button><Link to="SignUp">Sign Up</Link></Button>
                 <Button><Link to="SignIn">Sign In</Link></Button>
                 <Button >Logout</Button>
-
             </div>
-
-
         </Router>
         )
     }

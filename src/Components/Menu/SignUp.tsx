@@ -1,6 +1,6 @@
-import React, { useImperativeHandle } from 'react'
-import { Form, FormGroup, Input, Button } from 'reactstrap'
-import { useHistory } from 'react-router-dom'
+import React, { useImperativeHandle } from 'react';
+import { Form, FormGroup, Input, Button } from 'reactstrap';
+import { useHistory } from 'react-router-dom';
 type AcceptedProps = {
     reviseToken: (newToken: string) => void,
     clearToken: () => void
@@ -27,7 +27,7 @@ class SignUp extends React.Component<AcceptedProps, UserState> {
             password: '',
             admin: false,
             businessOwner: false,
-            setUserSignup: true,
+            setUserSignup: false,
         }
     }
 
@@ -67,8 +67,17 @@ class SignUp extends React.Component<AcceptedProps, UserState> {
                         <Input type="password" name="password" value={this.state.password} placeholder="Please enter your password here" minimumLength="8" required onChange={(e) => this.setState({password : e.target.value})} />
                     </FormGroup>
                     <FormGroup>
-
+                        <label id="admin">Admin</label>
+                        <Input type="checkbox" name="admin" required onClick={(e) => this.setState({admin : true})} />
                     </FormGroup>
+                    <FormGroup>
+                        <label id="businessOwner">Business Owner</label>
+                        <Input type="checkbox" name="businessOwner" required onClick={(e) => this.setState({admin : true})} />
+                    </FormGroup>
+                    <Button id="Sign Up"onClick={(e) => this.setState({setUserSignup : true})}>
+                        SignUp     
+                    </Button>
+
 
                     <Button type="submit">Submit</Button>
                 </Form>
