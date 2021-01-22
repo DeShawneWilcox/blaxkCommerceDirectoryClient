@@ -1,7 +1,9 @@
 import React, { useImperativeHandle } from 'react';
 import { Form, FormGroup, Input, Button } from 'reactstrap';
 import { useHistory } from 'react-router-dom';
-type AcceptedProps = {
+type SignUpProps = {
+    token: string,
+    sessionToken: string,
     reviseToken: (newToken: string) => void,
     clearToken: () => void
 }
@@ -17,8 +19,8 @@ type UserState = {
 }
 
 
-class SignUp extends React.Component<AcceptedProps, UserState> {
-    constructor(props: AcceptedProps) {
+class SignUp extends React.Component<SignUpProps, UserState> {
+    constructor(props: SignUpProps) {
         super(props);
         this.state = {
             firstName: '',
@@ -29,11 +31,13 @@ class SignUp extends React.Component<AcceptedProps, UserState> {
             businessOwner: false,
             setUserSignup: false,
         }
+        this.signUp=this.signUp.bind(this)
     }
 
 
 
     signUp(event: any) {
+        event.preventDefault()
         fetch('http://localhost:1906/user/signup', {
             method: 'POST',
             headers: new Headers({
@@ -44,13 +48,31 @@ class SignUp extends React.Component<AcceptedProps, UserState> {
             .then(response => response.json())
             .then(result => {
                 this.props.reviseToken(result.sessionToken)
+                
                 console.log('Signup completed.')
-                localStorage.setItem('SignUp', JSON.stringify({
-                    signUp: true,
-                    token: result.token
-                }))
+                // localStorage.setItem('SignUp', JSON.stringify({
+                //     signUp: true,
+                //     token: result.token
+                // }))
+                // history.push('/');
+                // window.location.reload(true);
 
             })
+            .catch(error=> console.log('error', error));
+            
+    }
+
+    componentDidMount = () => {
+        this.setState({
+            firstName: '',
+            lastName: '',
+            username: '',
+            password: '',
+            admin: true,
+            businessOwner: true,
+           setUserSignup: true
+            
+        })
     }
     render() {
         return (
@@ -58,13 +80,21 @@ class SignUp extends React.Component<AcceptedProps, UserState> {
                 <h1>Sign Up</h1>
                 <Form onSubmit={this.signUp}>
                     <FormGroup>
-                        <label id="username">username</label>
-                        <Input pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" title="Please use letters and numbers for your username. The minimum length is 8 characters." type="text" name="username" value={this.state.username} placeholder="Please enter your username." minimumLength="8" required 
+                        <label id="firstname">First Name</label>
+                        <Input title="Please enter your first name." type="text" name="firstname" value={this.state.firstName} placeholder="Please enter your first name." minimumLength={2} required onChange={(e) => this.setState( { firstName: e.target.value })}/>
+                    </FormGroup>
+                    <FormGroup>
+                        <label id="lastname">Last Name</label>
+                        <Input title="Please enter your last name." type="text" name="lastname" value={this.state.lastName} placeholder="Please enter your last name." minimumLength={2} required onChange={(e) => this.setState( { lastName: e.target.value })}/>
+                    </FormGroup>
+                    <FormGroup>
+                        <label id="username">Username</label>
+                        <Input pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" title="Please use letters and numbers for your username. The minimum length is 8 characters." type="text" name="username" value={this.state.username} placeholder="Please enter your username." minimumLength={8} required 
                         onChange={(e) => this.setState({ username: e.target.value })} />
                     </FormGroup>
                     <FormGroup>
-                        <label id="password">password</label>
-                        <Input type="password" name="password" value={this.state.password} placeholder="Please enter your password here" minimumLength="8" required onChange={(e) => this.setState({password : e.target.value})} />
+                        <label id="password">Password</label>
+                        <Input type="password" name="password" value={this.state.password} placeholder="Please enter your password here" minimumLength={8} required onChange={(e) => this.setState({password : e.target.value})} />
                     </FormGroup>
                     <FormGroup>
                         <label id="admin">Admin</label>
@@ -74,12 +104,9 @@ class SignUp extends React.Component<AcceptedProps, UserState> {
                         <label id="businessOwner">Business Owner</label>
                         <Input type="checkbox" name="businessOwner" required onClick={(e) => this.setState({admin : true})} />
                     </FormGroup>
-                    <Button id="Sign Up"onClick={(e) => this.setState({setUserSignup : true})}>
+                    <Button id="Sign Up">
                         SignUp     
                     </Button>
-
-
-                    <Button type="submit">Submit</Button>
                 </Form>
             </div>
         )

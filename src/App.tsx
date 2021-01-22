@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import React, {FunctionComponent, useState, useEffect } from 'react';
+import React from 'react';
 import { isConstructorDeclaration } from 'typescript';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
@@ -7,13 +7,17 @@ import { Container, Row, Col } from 'reactstrap';
 import './App.css';
 import Menu from './Components/Menu/Menu'
 import SignUp from './Components/Menu/SignUp'
+import Review from './Components/Reviews/Review'
 
 
 
 
 type SessionState = {
-  sessionToken: string|null
-  newToken: string
+  token: string,
+  sessionToken: string,
+  newToken: string,
+  adminToken: string,
+  businessToken: string
 };
 
 
@@ -21,7 +25,14 @@ type SessionState = {
 
 class App extends React.Component<{},SessionState> {
   constructor(props: SessionState) {
-    super(props) 
+    super(props)
+    this.state= {
+      token: '',
+      sessionToken: '',
+      newToken: '',
+      adminToken: '',
+      businessToken: ''
+    } 
    
   }
 
@@ -30,7 +41,11 @@ class App extends React.Component<{},SessionState> {
   componentDidMount= () => {
     if (localStorage.getItem('token')) {
     this.setState({
-      sessionToken: localStorage.getItem('token')
+      sessionToken: localStorage.getItem('token')||'',
+      token: localStorage.getItem('token')|| '',
+      newToken: localStorage.getItem('token')|| '',
+      adminToken: localStorage.getItem('token')|| '',
+      businessToken: localStorage.getItem('token')|| ''
     })
     
     
@@ -55,20 +70,32 @@ this.componentDidCatch = () => {
     sessionToken: ''
   })
 }
+
+
 console.log('Confirm token is cleared.', localStorage.token);
 }
+
+protectedViews = (props: SessionState) => {
+  return (this.state.sessionToken === localStorage.getItem('token') ? <Review token={this.state.token} sessionToken={this.state.sessionToken}  /> 
+  : <p id="tokenissue">Sign Up or Sign In to have access to this content.</p>)
+}
+
+
   render() {
    return (
       <div>
         <Container>
           <Row>
             <Router>
-              <Menu />
-              <SignUp reviseToken={this.reviseToken} clearToken={this.clearToken}/>
+              <Menu reviseToken={this.reviseToken} clearToken={this.clearToken} token={this.state.token} sessionToken={this.state.sessionToken}/>
+              <SignUp reviseToken={this.reviseToken} clearToken={this.clearToken} token={this.state.token} sessionToken={this.state.sessionToken}/>
             </Router>
           </Row>
+          <Row>
+            {this.protectedViews}
+          </Row>
         </Container>
-        <Menu />
+        
 
       </div>
     );
