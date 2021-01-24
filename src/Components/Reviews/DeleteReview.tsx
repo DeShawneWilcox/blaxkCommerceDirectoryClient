@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 
 
-class Deletereview extends React.Component {
+class DeleteReview extends React.Component {
 
 
     render(): any {
@@ -15,3 +15,5 @@ class Deletereview extends React.Component {
 
     }
 }
+
+export default DeleteReview;

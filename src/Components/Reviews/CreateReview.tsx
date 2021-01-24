@@ -3,7 +3,13 @@ import { render } from '@testing-library/react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 type CreateReviewProps = {
+    title: any,
+    entry: any,
+    reviewRes: any,
+    review: any,
+    sessionToken: string,
     token: string,
+    reviewid: any
 
 
 }
@@ -15,7 +21,7 @@ type CreateReviewState = {
 }
 
 
-class Createreview extends React.Component<CreateReviewProps, CreateReviewState> {
+class CreateReview extends React.Component<CreateReviewProps, CreateReviewState> {
     constructor(props: CreateReviewProps) {
         super(props);
         this.state = {
@@ -96,4 +102,4 @@ class Createreview extends React.Component<CreateReviewProps, CreateReviewState>
 }
 
 
-export default Createreview;;
+export default CreateReview;;

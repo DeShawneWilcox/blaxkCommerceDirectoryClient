@@ -17,7 +17,8 @@ type SessionState = {
   sessionToken: string,
   newToken: string,
   adminToken: string,
-  businessToken: string
+  businessToken: string,
+
 };
 
 
@@ -76,7 +77,7 @@ console.log('Confirm token is cleared.', localStorage.token);
 }
 
 protectedViews = (props: SessionState) => {
-  return (this.state.sessionToken === localStorage.getItem('token') ? <Review token={this.state.token} sessionToken={this.state.sessionToken}  /> 
+  return (this.state.sessionToken === localStorage.getItem('token') ? <Review token={this.state.token} sessionToken={this.state.sessionToken}   /> 
   : <p id="tokenissue">Sign Up or Sign In to have access to this content.</p>)
 }
 
@@ -89,6 +90,7 @@ protectedViews = (props: SessionState) => {
             <Router>
               <Menu reviseToken={this.reviseToken} clearToken={this.clearToken} token={this.state.token} sessionToken={this.state.sessionToken}/>
               <SignUp reviseToken={this.reviseToken} clearToken={this.clearToken} token={this.state.token} sessionToken={this.state.sessionToken}/>
+              
             </Router>
           </Row>
           <Row>

@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 
 
-class Editreview extends React.Component {
+class EditReview extends React.Component {
 
 
     render(): any {
@@ -15,3 +15,5 @@ class Editreview extends React.Component {
 
     }
 }
+
+export default EditReview;
