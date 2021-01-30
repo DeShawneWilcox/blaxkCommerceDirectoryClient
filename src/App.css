@@ -1,6 +1,4 @@
- .SignInForm Form {
 
- }
 
 .menu {
     background-color: tan;
@@ -38,8 +36,8 @@
     width: 300px;
   }
   .current-module {
-    /* align-content: center;
-    margin: 0 auto; */
+    align-content: center;
+    margin: 0 auto;
     
   }
 
