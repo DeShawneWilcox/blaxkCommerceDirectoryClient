@@ -5,7 +5,7 @@ type SignUpProps = {
     token: string,
     sessionToken: string,
     reviseToken: (newToken: string) => void,
-    clearToken: () => void
+    clearToken: (e: any) => void
 }
 
 type UserState = {
@@ -74,6 +74,7 @@ class SignUp extends React.Component<SignUpProps, UserState> {
             
         })
     }
+    
     render() {
         return (
             <div>

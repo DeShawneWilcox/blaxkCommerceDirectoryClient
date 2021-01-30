@@ -8,16 +8,15 @@ import { stringify } from 'querystring';
 
 
 type ReviewProps = {
-
-    sessionToken: string,
+    businessid: any,
     token: string,
+    
 }
 
 type ReviewState = {
     addReview: boolean,
     review: any,
-    reviewid: any,
-    reviewRes: any,
+    reviewid: number,
     title: string,
     entry: string,
 }
@@ -30,31 +29,29 @@ class Review extends React.Component<ReviewProps, ReviewState> {
         this.state = {
             addReview: false,
             review: '',
-            reviewid: null,
-            reviewRes: [],
+            reviewid: 0,
             title: '',
             entry: ''
         
-        }// this.reviewRes =this.reviewRes.bind(this)
+        }
+         
     }
 
-    clickAddReview() {
-        this.componentDidCatch = () => {
+    clickAddReview = () => {
+         
             this.setState({
                 addReview: true
             })
-
-        }
-
+        
     }
 
-    clickViewReview() {
-        this.componentDidCatch = () => {
+    clickViewReview = () => {
+        
             this.setState({
                 addReview: false
             })
-
-        }
+            
+    
 
     }
 
@@ -67,14 +64,15 @@ class Review extends React.Component<ReviewProps, ReviewState> {
                 {this.state.addReview === false ?
                     <div>
                         <Button onClick={this.clickAddReview}>Please leave a review.</Button>
-                        <ViewReview token={this.props.token} sessionToken={this.props.sessionToken} review={this.state.review} reviewid={this.state.reviewid} reviewRes={this.state.reviewRes} title={this.state.title} entry={this.state.entry} />
+                        <h2>should see reviews</h2>
+                        <ViewReview businessid= {this.props.businessid} token={this.props.token} />
                     </div>
 
                     :
 
                     <div>
                         <Button onClick={this.clickViewReview}>View all Reviews.</Button>
-                        <CreateReview token={this.props.token} sessionToken={this.props.sessionToken} review={this.state.review} reviewid={this.state.reviewid} reviewRes={this.state.reviewRes} title={this.state.title} entry={this.state.entry} />
+                        <CreateReview businessid={this.props.businessid} token={this.props.token} />
                     </div>
 
                 }

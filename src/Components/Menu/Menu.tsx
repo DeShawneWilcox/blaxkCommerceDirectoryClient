@@ -3,14 +3,16 @@ import { Button, Row, Col } from 'reactstrap';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import SignUp from './SignUp';
 import SignIn from './SignIn';
+import Review from '../Reviews/Review'
 
 type MenuProps = {
     reviseToken: (newToken: string) => void,
-    clearToken: () => void,
+    clearToken: (e: any) => void,
     sessionToken: string,
     token: string
     
 }
+
 
 
 
@@ -26,10 +28,10 @@ class Menu extends React.Component<MenuProps,{}> {
         return (
             <Router>
                 <div className="menu">
-                    <Button><Link to="/">Home</Link></Button>
-                    <Button><Link to="SignUp">Sign Up</Link></Button>
-                    <Button><Link to="SignIn">Sign In</Link></Button>
-                    <Button >Logout</Button>
+                    <Button color="primary" size="lg"><Link to="/">Home</Link></Button>
+                    <Button color="primary" size="lg"><Link to="SignUp">Sign Up</Link></Button>
+                    <Button color="primary" size="lg"><Link to="SignIn">Sign In</Link></Button>
+                    <Button color="primary" size="lg" onClick={this.props.clearToken}>Logout</Button>
                 </div>
                 <div className="menu-route">
                     <Switch>

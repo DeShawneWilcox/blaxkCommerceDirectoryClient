@@ -1,18 +1,22 @@
 import React from 'react'
 import { updateShorthandPropertyAssignment } from 'typescript';
-import { Form, FormGroup, Input, Button } from 'reactstrap';;
+import { Form, FormGroup, Input, Button } from 'reactstrap';
+import { Redirect } from 'react-router-dom';
+
+
 
 type SignInProps = {
     token: string,
     sessionToken: string,
     reviseToken: (newToken: string) => void,
-    clearToken: () => void
+    clearToken: (e: any) => void
 }
 
 type SignInState = {
     username: string,
     password: string,
-    setUserLoggedin: boolean
+    setUserLoggedin: boolean,
+    redirect: boolean
 };
 
 
@@ -22,11 +26,15 @@ class SignIn extends React.Component<SignInProps, SignInState> {
         this.state = {
             username: '',
             password: '',
-            setUserLoggedin: false
+            setUserLoggedin: false,
+            redirect: false
+        
 
         }
-        this.signIn=this.signIn.bind(this)
+        this.signIn = this.signIn.bind(this)
     }
+
+
 
     signIn(event: any) {
         event.preventDefault();
@@ -43,22 +51,44 @@ class SignIn extends React.Component<SignInProps, SignInState> {
             .then(result => {
                 this.props.reviseToken(result.sessionToken)
                 console.log('sign in completed')
+
+                // history.push('/');
+                window.location.reload(true);
+
             })
+            .catch(err => console.log(err))
+
+
+
+
     }
+
 
     componentDidMount = () => {
         this.setState({
             username: '',
             password: '',
-            setUserLoggedin: true
-            
+            setUserLoggedin: true,
+            redirect: true
+
         })
+    }
+    // setRedirect = () => {
+    //     this.setState({
+    //         redirect: true
+    //     })
+    // }
+
+    renderRedirect = () => {
+        if (this.state.redirect) {
+            return <Redirect to='review/' />
+        }
     }
     render() {
         return (
             <div>
                 <h1>Sign In</h1>
-                <Form onSubmit={this.signIn}>
+                <Form className="SignInForm"onSubmit={this.signIn}>
                     <FormGroup>
                         <label id="username">username</label>
                         <Input pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" title="Please use letters and numbers for your username. The minimum length is 8 characters." type="text" name="username" value={this.state.username} placeholder="Please enter your username." minimumLength={8} required

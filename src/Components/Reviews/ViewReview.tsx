@@ -2,14 +2,8 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import ReviewCard from './ReviewCard';
 type ViewProps = {
-    review: any,
-    reviewRes: any,
-    title: string,
-    entry: string,
-    token: string,
-    sessionToken: string,
-    reviewid: any
-
+    token: string
+    businessid: number
 }
 type ViewReviewState = {
     reviewRes: any
@@ -21,12 +15,15 @@ class ViewReview extends React.Component<ViewProps, ViewReviewState> {
         this.state = {
             reviewRes: []
         }
+        this.viewReviews = this.viewReviews.bind(this)
 
     }
 
 
     viewReviews() {
-        fetch('http://localhost:1906/review/',
+
+        console.log('Id in the get review fetch', this.props.businessid)
+        fetch(`http://localhost:1906/review/reviews/${this.props.businessid}`,
             {
                 method: 'GET',
                 headers: new Headers({
@@ -50,8 +47,7 @@ class ViewReview extends React.Component<ViewProps, ViewReviewState> {
     }
 
     componentDidMount = () => {
-        
-
+    
         this.viewReviews()
     }
 
@@ -63,7 +59,7 @@ class ViewReview extends React.Component<ViewProps, ViewReviewState> {
         return (
             <div>
                 <h3 className="current-module"></h3>
-                <ReviewCard reviewRes={this.state.reviewRes} token={this.props.token}  sessionToken={this.props.sessionToken} title={this.props.title} entry={this.props.entry} reviewid={this.props.reviewid} review={this.props.review} />
+                <ReviewCard  reviewRes={this.state.reviewRes} token={this.props.token} businessid={this.props.businessid} />
             </div>
 
 
