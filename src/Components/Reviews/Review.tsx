@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 import { tokenToString } from 'typescript';
 import ViewReview from './ViewReview';
 import CreateReview from './CreateReview';
-import { Button } from 'reactstrap';
+import { Button, Modal, Row, Col, Container } from 'reactstrap';
 import { stringify } from 'querystring';
 
 
@@ -19,6 +19,7 @@ type ReviewState = {
     reviewid: number,
     title: string,
     entry: string,
+    
 }
 
 
@@ -31,9 +32,11 @@ class Review extends React.Component<ReviewProps, ReviewState> {
             review: '',
             reviewid: 0,
             title: '',
-            entry: ''
+            entry: '',
+            
         
         }
+        
          
     }
 
@@ -55,28 +58,37 @@ class Review extends React.Component<ReviewProps, ReviewState> {
 
     }
 
+    
+
 
 
     render(): any {
         return (
             <div className="jumbotron">
+                <Container>
 
                 {this.state.addReview === false ?
                     <div>
-                        <Button onClick={this.clickAddReview}>Please leave a review.</Button>
-                        <h2>should see reviews</h2>
-                        <ViewReview businessid= {this.props.businessid} token={this.props.token} />
+                        
+                        <Row>
+                        <Button  color="primary" className="ReviewsButtons"onClick= {this.clickAddReview}> Reviews</Button>
+                        <CreateReview businessid={this.props.businessid} token={this.props.token} />
+                        </Row>
+                        
                     </div>
 
                     :
 
                     <div>
-                        <Button onClick={this.clickViewReview}>View all Reviews.</Button>
-                        <CreateReview businessid={this.props.businessid} token={this.props.token} />
+                       
+                        <Row>
+                        <Button size="sm" color="primary" className="ExitButton" onClick={this.clickViewReview}>Exit</Button>
+                        <ViewReview businessid= {this.props.businessid} token={this.props.token} />
+                        </Row>
                     </div>
 
                 }
-
+</Container>
             </div>
 
 

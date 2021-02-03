@@ -28,10 +28,10 @@ class Menu extends React.Component<MenuProps,{}> {
         return (
             <Router>
                 <div className="menu">
-                    <Button color="primary" size="lg"><Link to="/">Home</Link></Button>
-                    <Button color="primary" size="lg"><Link to="SignUp">Sign Up</Link></Button>
-                    <Button color="primary" size="lg"><Link to="SignIn">Sign In</Link></Button>
-                    <Button color="primary" size="lg" onClick={this.props.clearToken}>Logout</Button>
+                    <Button className="menubutton"  size="lg"><Link to="/">Home</Link></Button>
+                    <Button className="menubutton" size="lg"><Link to="SignUp">Sign Up</Link></Button>
+                    <Button className="menubutton" size="lg"><Link to="SignIn">Sign In</Link></Button>
+                    <Button className="menubutton" size="lg" onClick={this.props.clearToken}>Logout</Button>
                 </div>
                 <div className="menu-route">
                     <Switch>

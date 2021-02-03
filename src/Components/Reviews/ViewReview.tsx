@@ -1,21 +1,25 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import ReviewCard from './ReviewCard';
+import {Button, Modal, ModalBody, ModalHeader} from 'reactstrap';
 type ViewProps = {
     token: string
     businessid: number
 }
 type ViewReviewState = {
-    reviewRes: any
+    reviewRes: any,
+    modal: boolean
 }
 
 class ViewReview extends React.Component<ViewProps, ViewReviewState> {
     constructor(props: ViewProps) {
         super(props);
         this.state = {
-            reviewRes: []
+            reviewRes: [],
+            modal: false
         }
         this.viewReviews = this.viewReviews.bind(this)
+        this.toggle = this.toggle.bind(this)
 
     }
 
@@ -51,6 +55,12 @@ class ViewReview extends React.Component<ViewProps, ViewReviewState> {
         this.viewReviews()
     }
 
+    toggle = () => {
+        this.setState({
+            modal: !this.state.modal
+        })
+    }
+
 
 
 
@@ -58,8 +68,12 @@ class ViewReview extends React.Component<ViewProps, ViewReviewState> {
     render() {
         return (
             <div>
-                <h3 className="current-module"></h3>
-                <ReviewCard  reviewRes={this.state.reviewRes} token={this.props.token} businessid={this.props.businessid} />
+                 
+                
+                 <ReviewCard  reviewRes={this.state.reviewRes} token={this.props.token} businessid={this.props.businessid} />
+
+                
+                
             </div>
 
 

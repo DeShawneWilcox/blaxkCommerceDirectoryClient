@@ -60,7 +60,7 @@ class Business extends React.Component<BusinessProps, BusinessState>{
             <div className="jumpotron">
                 {this.state.addBusiness === false ?
                     <div>
-                        <Button onClick={this.clickAddBusiness}>Would you like to create a business?</Button>
+                        <Button className="createbusinessbutton" onClick={this.clickAddBusiness}>Would you like to create a business?</Button>
                         <ViewBusiness token={this.props.token} sessionToken={this.props.sessionToken}
                             business={this.state.business} businessid={this.state.businessid} businessRes={this.state.businessRes} businessOwner={this.state.businessOwner} businessName={this.state.businessName} address={this.state.address} zipcode={this.state.zipcode} businessFunction={this.state.businessFunction} businessToken={this.props.businessToken} />
                     </div>

@@ -1,54 +1,119 @@
+.app {
+  background: rgb(88, 87, 87);
+  
+}
 
+/* .data {
+  background:rgb(88, 87, 87);
+  
+} */
+
+.createbusinessbutton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.signinhead {
+  color: rgb(55, 55, 55);
+  
+}
+.signinform {
+  color: rgb(55, 55, 55);
+}
 
 .menu {
-    background-color: tan;
+    background-color: rgb(224, 203, 175);
     display: flex;
     justify-content: space-between;
     height: 12vh;
     width: 100vw;
     margin-bottom: 50px;
+    border: solid grey;
+    border-radius: 5px;
   }
   .menu Button {
-    margin: 1vh;
+    margin: auto;
+    margin-bottom: auto;
     font-weight: bolder;
-    color: white;
+    color: lightblue;
     background-color: black;
     height: 40px;
     size: lg;
+    
   }
   
   #tokenissue {
-    color: red;
+    color:lightblue;
     font-size: 16px;
+    text-align: center;
   }
   
+
+  .businesscard {
+    border: solid grey;
+    background: rgb(224, 203, 175);
+    border-radius: 2px;
+    /* text-align: center; */
+    display: flex;
+    
+  }
+
+  div .reviewcard {
+    border: solid grey;
+    border-radius: 6px;
+  }
+
   .reviewcard {
-    border: 2px 2px  solid grey;
-    background: tan;
-    padding: 2rem;
+    border: solid;
+    border-color: lightblue;
+    background: lightblue;
+    border-radius: 2px;
+    padding: 1rem;
     margin: 3rem;
-    text-align: left;
+    text-align: center;
+    
+
   }
-  .reviewcard .reviewbutton {
-    position: relative;
-    margin-left: 100px;
-    padding: 3rem;
-    width: 300px;
-  }
+
+ 
+  
   .current-module {
     align-content: center;
     margin: 0 auto;
+    background: rgb(224, 203, 175);
     
   }
 
   
-  .jumbotron {
+
+  
+  div .jumbotron {
     margin: 0 auto;
-    width: 100%;
-    text-align: center;
+    background: rgb(224, 203, 175);
+    display: flex;
+    justify-content: space-between;
+    align-items: left;
+    
+
+
+  }
+
+  .createreviewform {
+    border: solid grey;
+    border-radius: 2px;
+    background: lightblue;
+  }
+
+  .ExitButton {
+    height: 50px;
+    width: 70px;
   }
   
   .reviewButtonMenu {
     display: flex;
     justify-content: space-between;
   }
+
+  

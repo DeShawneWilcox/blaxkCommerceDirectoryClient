@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, Modal } from 'reactstrap';
 
 type CreateReviewProps = {
     token: string
@@ -90,12 +90,14 @@ class CreateReview extends React.Component<CreateReviewProps, CreateReviewState>
     render(): any {
         return (
             <div>
+                 <Button  color="primary" class="review-button" onClick={this.toggle}>Add Review</Button>
+                <Modal isOpen={this.state.modal} toggle={this.toggle}>
                 {this.state.submittedReview === true ?
                     null
                     :
                     <div>
                         <h3>Create Review</h3>
-                        <Form onSubmit={this.createReview}>
+                        <Form className="creatreviewform" onSubmit={this.createReview} toggle={this.toggle}>
                             <FormGroup>
                                 <Label for="title"></Label>
                                 <Input type="text" name="title" value={this.state.title} id="review-title-entry" required placeholder="please enter a review title" onChange={(e) => this.setState({ title: e.target.value })} />
@@ -104,10 +106,12 @@ class CreateReview extends React.Component<CreateReviewProps, CreateReviewState>
                                 <Label for="entry"></Label>
                                 <Input type="text" name="title" value={this.state.entry} id="review-entry" required placeholder="please enter a review" onChange={(e) => this.setState({ entry: e.target.value })} />
                             </FormGroup>
-                            <Button>Submit</Button>
+                            <Button >Submit</Button>
+                            <Button onClick={this.toggle}>Cancel</Button>
                         </Form>
                     </div>
                 }
+                </Modal>
             </div>
 
 

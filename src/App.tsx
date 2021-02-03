@@ -67,6 +67,7 @@ class App extends React.Component<{}, SessionState> {
     }
     this.reviseToken = this.reviseToken.bind(this)
     this.clearToken = this.clearToken.bind(this)
+    
 
   }
 
@@ -92,6 +93,8 @@ class App extends React.Component<{}, SessionState> {
     this.setState({
       token: newToken, sessionToken: newToken
     })
+
+   
 
 
 
@@ -119,7 +122,7 @@ class App extends React.Component<{}, SessionState> {
 
   render() {
     return (
-      <div>
+      <div className="app">
         <Container>
           <Row>
             <Router>
@@ -131,12 +134,12 @@ class App extends React.Component<{}, SessionState> {
 
             </Router>
           </Row>
-          <Row>
-
-          </Row>
-          <Row>
+          
+          <Row className="data">
             {this.state.token === localStorage.getItem('token') ? <Business businessid={this.state.businessid} token={this.state.token} sessionToken={this.state.sessionToken} businessToken={this.state.businessToken} />
-              : <p id="tokenissue">Sign Up or Sign In to have access to this content.</p>}
+              : <h1 id="tokenissue"> Welcome to the Blaxk Commerce Directory! Please sign in or create an account for access.
+              </h1>
+              }
           </Row>
         </Container>
 
@@ -152,3 +155,7 @@ class App extends React.Component<{}, SessionState> {
 
 
 export default App;
+function businessToken(newToken: string, string: any) {
+  throw new Error('Function not implemented.');
+}
+

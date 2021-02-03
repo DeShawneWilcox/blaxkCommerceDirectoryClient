@@ -97,13 +97,13 @@ class SignUp extends React.Component<SignUpProps, UserState> {
                         <label id="password">Password</label>
                         <Input type="password" name="password" value={this.state.password} placeholder="Please enter your password here" minimumLength={8} required onChange={(e) => this.setState({password : e.target.value})} />
                     </FormGroup>
-                    <FormGroup>
+                    {/* <FormGroup>
                         <label id="admin">Admin</label>
-                        <Input type="checkbox" name="admin" required onClick={(e) => this.setState({admin : true})} />
-                    </FormGroup>
+                        <Input className="admin" type="checkbox" name="admin" required onClick={(e) => this.setState({admin : true})} />
+                    </FormGroup> */}
                     <FormGroup>
                         <label id="businessOwner">Business Owner</label>
-                        <Input type="checkbox" name="businessOwner" required onClick={(e) => this.setState({admin : true})} />
+                        <Input className="businessowner" type="checkbox" name="businessOwner" required onClick={(e) => this.setState({businessOwner : true})} />
                     </FormGroup>
                     <Button id="Sign Up">
                         SignUp     

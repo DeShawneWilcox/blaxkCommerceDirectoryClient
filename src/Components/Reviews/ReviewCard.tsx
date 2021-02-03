@@ -19,6 +19,7 @@ type ReviewCardProps = {
 
 type ReviewCardState = {
     reviewid: number,
+    modal: boolean
     
 }
 
@@ -29,8 +30,15 @@ class ReviewCard extends React.Component<ReviewCardProps, ReviewCardState> {
     constructor(props: ReviewCardProps) {
         super(props);
         this.state ={
-            reviewid: 0
+            reviewid: 0,
+            modal: false
         }
+    }
+
+    toggle = () => {
+        this.setState({
+            modal: !this.state.modal
+        })
     }
 
 
@@ -46,18 +54,18 @@ class ReviewCard extends React.Component<ReviewCardProps, ReviewCardState> {
                                 reviewid: review.id}); }}key={review.id} className="reviewcard">
                             <h5>Title:</h5>
                             <h6>{review.title}</h6>
-                            <h5>Please leave a review. Please describe your experience and any other notable things that come to mind.</h5>
+                            <h5>Review:</h5>
                             <p>{review.entry}</p>
                             <br></br>
                             <div className="reviewButton">
-                                {/* <CreateReview token={this.props.token} reviewid={review.id}sessionToken={this.props.sessionToken}  review={this.props.review} 
-                                reviewRes={this.props.reviewRes} title={this.props.title} entry={this.props.entry}/> */}
+                                {/* <CreateReview token={this.props.token} businessid={review.id}/> */}
                                 <br></br>
                                 <br></br>
                                 <br></br>
                                 <EditReview token={this.props.token} reviewid={this.state.reviewid} />
                                 <DeleteReview token={this.props.token} reviewid={this.state.reviewid} 
                                      />
+                                     
 
 
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, Modal } from 'reactstrap';
 
 type CreateBusinessProps = {
     sessionToken: string,
@@ -22,7 +22,8 @@ type CreateBusinessState = {
     address: string,
     zipcode: string,
     businessFunction: string,
-    submittedBusiness: boolean
+    submittedBusiness: boolean,
+    modal: boolean
 }
 
 class CreateBusiness extends React.Component<CreateBusinessProps, CreateBusinessState> {
@@ -36,10 +37,12 @@ class CreateBusiness extends React.Component<CreateBusinessProps, CreateBusiness
             address: '',
             zipcode: '',
             businessFunction: '',
-            submittedBusiness: false
+            submittedBusiness: false,
+            modal: false
         }
         console.log('business token ---->', this.props.businessToken)
         this.createBusiness = this.createBusiness.bind(this)
+        this.toggle = this.toggle.bind(this)
     }
 
     createBusiness(event: any) { 
@@ -84,9 +87,19 @@ class CreateBusiness extends React.Component<CreateBusinessProps, CreateBusiness
         })
     }
 
+    toggle = () => {
+        this.setState({
+            modal: !this.state.modal
+        })
+    }
+
+
+
     render (): any {
         return (
             <div>
+                
+
                 {this.state.submittedBusiness === true ?
                 null
             :
@@ -113,7 +126,8 @@ class CreateBusiness extends React.Component<CreateBusinessProps, CreateBusiness
                                 <Label for="businessFunction"></Label>
                                 <Input type="text" name="businessFunction" value={this.state.businessFunction} id="business-function-entry" required placeholder="Business Function" onChange={(e) => this.setState({ businessFunction: e.target.value })} />
                             </FormGroup>
-                            <Button>Submit</Button>
+                            <Button onClick={this.toggle}>Submit</Button>
+                            <Button onClick={this.toggle}>Cancel</Button>
                 </Form>
                 </div>}
             </div>

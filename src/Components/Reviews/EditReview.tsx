@@ -85,7 +85,7 @@ class EditReview extends React.Component<EditProps, EditState> {
     render(): any {
         return (
             <div>
-                <Button color="primary" class="review-button" onClick={this.toggle}>Edit Review</Button>
+                <Button color="secondary" class="review-button" onClick={this.toggle}>Edit Review</Button>
                 <Modal isOpen={this.state.modal} toggle={this.toggle}>
                     {
                         this.state.editedReview === true ?
