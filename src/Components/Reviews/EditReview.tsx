@@ -1,6 +1,8 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { Button, Form, FormGroup, Label, Input, Modal } from 'reactstrap';
+import APIURL from '../../helpers/environment'
+
 
 type EditProps = {
     token: string,
@@ -40,7 +42,7 @@ class EditReview extends React.Component<EditProps, EditState> {
 
     editReview(event: any) {
         event.preventDefault();
-        fetch(`http://localhost:1906/review/${this.props.reviewid}`, {
+        fetch(`${APIURL}/review/${this.props.reviewid}`, {
             method: 'PUT',
             headers: new Headers({
                 'Content-Type': 'application/json',

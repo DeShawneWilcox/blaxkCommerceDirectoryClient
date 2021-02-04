@@ -2,6 +2,9 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import ReviewCard from './ReviewCard';
 import {Button, Modal, ModalBody, ModalHeader} from 'reactstrap';
+import APIURL from '../../helpers/environment'
+
+
 type ViewProps = {
     token: string
     businessid: number
@@ -27,7 +30,7 @@ class ViewReview extends React.Component<ViewProps, ViewReviewState> {
     viewReviews() {
 
         console.log('Id in the get review fetch', this.props.businessid)
-        fetch(`http://localhost:1906/review/reviews/${this.props.businessid}`,
+        fetch(`${APIURL}/review/reviews/${this.props.businessid}`,
             {
                 method: 'GET',
                 headers: new Headers({

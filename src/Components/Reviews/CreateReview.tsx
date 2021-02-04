@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { Button, Form, FormGroup, Label, Input, Modal } from 'reactstrap';
+import APIURL from '../../helpers/environment';
 
 type CreateReviewProps = {
     token: string
@@ -34,7 +35,7 @@ class CreateReview extends React.Component<CreateReviewProps, CreateReviewState>
 
     createReview(event: any) {
         event.preventDefault();
-        fetch('http://localhost:1906/review/', {
+        fetch(`${APIURL}/review/`, {
             method: 'POST',
             headers: new Headers({
                 'Content-Type': 'application/json',

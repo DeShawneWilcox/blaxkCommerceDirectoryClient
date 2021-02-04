@@ -2,6 +2,7 @@ import React from 'react'
 import { updateShorthandPropertyAssignment } from 'typescript';
 import { Form, FormGroup, Input, Button } from 'reactstrap';
 import { Redirect } from 'react-router-dom';
+import APIURL from '../../helpers/environment'
 
 
 
@@ -39,7 +40,7 @@ class SignIn extends React.Component<SignInProps, SignInState> {
     signIn(event: any) {
         event.preventDefault();
         console.log('testing signin')
-        fetch('http://localhost:1906/user/signin', {
+        fetch(`${APIURL}/user/signin`, {
             method: 'POST',
             headers: new Headers({
                 'Content-Type':

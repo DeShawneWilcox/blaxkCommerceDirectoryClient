@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import {Button} from 'reactstrap';
+import APIURL from '../../helpers/environment'
 
 type DeleteProps = {
     reviewid: number,
@@ -22,7 +23,7 @@ class DeleteReview extends React.Component<DeleteProps, {}> {
         event.preventDefault();
         console.log(this.props);
         console.log('delete review ran', this.props.reviewid)
-        fetch(`http://localhost:1906/review/delete/${this.props.reviewid}`, {
+        fetch(`${APIURL}/review/delete/${this.props.reviewid}`, {
             method: 'DELETE',
             headers: new Headers({
                 'Content-Type': 'application/json',

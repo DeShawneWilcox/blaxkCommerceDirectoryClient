@@ -1,5 +1,6 @@
 import React from 'react';
 import BusinessCard from './BusinessCard'
+import APIURL from '../../helpers/environment'
 
 type ViewBusinessProps = {
     sessionToken: string,
@@ -30,7 +31,7 @@ class ViewBusiness extends React.Component<ViewBusinessProps, ViewBusinessState>
     }
 
     viewBusinesses() {
-        fetch('http://localhost:1906/business/', {
+        fetch(`${APIURL}/business/`, {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',

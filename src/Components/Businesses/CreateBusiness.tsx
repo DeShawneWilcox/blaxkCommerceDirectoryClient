@@ -1,5 +1,9 @@
+import APIURL from '../../helpers/environment';
 import React from 'react';
 import { Button, Form, FormGroup, Label, Input, Modal } from 'reactstrap';
+
+
+
 
 type CreateBusinessProps = {
     sessionToken: string,
@@ -47,7 +51,7 @@ class CreateBusiness extends React.Component<CreateBusinessProps, CreateBusiness
 
     createBusiness(event: any) { 
         event.preventDefault();
-        fetch('http://localhost:1906/business/', {
+        fetch(`${APIURL}/business/`, {
             method: 'POST',
             headers: new Headers({
                 'Content-Type': 'application/json',

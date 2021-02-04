@@ -1,6 +1,9 @@
 import React, { useImperativeHandle } from 'react';
 import { Form, FormGroup, Input, Button } from 'reactstrap';
 import { useHistory } from 'react-router-dom';
+import APIURL from '../../helpers/environment'
+
+
 type SignUpProps = {
     token: string,
     sessionToken: string,
@@ -38,7 +41,7 @@ class SignUp extends React.Component<SignUpProps, UserState> {
 
     signUp(event: any) {
         event.preventDefault()
-        fetch('http://localhost:1906/user/signup', {
+        fetch(`${APIURL}/user/signup`, {
             method: 'POST',
             headers: new Headers({
                 'Content-Type': 'application/json'
