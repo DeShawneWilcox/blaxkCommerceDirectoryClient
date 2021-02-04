@@ -5,10 +5,10 @@ let APIURL = ''
 switch (window.location.hostname) {
     case 'localhost':
     case '127.0.0.1':
-        APIURL = 'http://localhost:<port of your local API>'
+        APIURL = 'http://localhost:1906'
         break
-    case '<name of deployed heroku app>.heroku.com':
-        APIURL = 'https://<name of deployed heroku back end>.herokuapp.com'
+    case 'dw-blaxk-commerce-directory-c.heroku.com':
+        APIURL = 'https://dw-blaxk-commerce-directory.herokuapp.com'
 }
 
 export default APIURL;
